@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/HomePage";
 import ChatPage from "./pages/ChatPage";
 import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 
 function App() {
   const user = {
@@ -22,9 +23,12 @@ function App() {
         <Route
           path="/chat"
           element={
-            <div className="min-h-screen font-nunito">
+            <div className="min-h-screen font-nunito flex flex-col">
               <Header user={user} />
-              <ChatPage />
+              <div className="flex-1">
+                <ChatPage />
+              </div>
+              <Footer />
             </div>
           }
         />
