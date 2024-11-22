@@ -1,0 +1,17 @@
+# General Node.js
+node_modules/
+dist/
+
+# Vite Build Output
+frontend/dist/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# GitHub-specific
+*.env
+.env.local

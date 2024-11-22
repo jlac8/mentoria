@@ -1,0 +1,20 @@
+{
+  "name": "mentoria",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "version": "1.0.0",
+  "description": "MentorIA is a generative AI platform that creates personalized, goal-oriented learning roadmaps",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=frontend\" \"npm run dev --workspace=backend\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Alva",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
