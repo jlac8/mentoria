@@ -1,17 +1,34 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Homepage from "./pages/HomePage";
 import ChatPage from "./pages/ChatPage";
+import Header from "./components/layout/Header";
 
 function App() {
+  const user = {
+    photo: "https://via.placeholder.com/150", // Foto de ejemplo
+  };
+
   return (
     <Router>
-      <div className="min-h-screen font-nunito bg-gradient-to-b from-[#8700Fc] to-[#83E1EC]">
-        <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/chat" element={<ChatPage />} />
-          {/* Puedes agregar más rutas aquí */}
-        </Routes>
-      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div className="min-h-screen font-nunito">
+              <Homepage />
+            </div>
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            <div className="min-h-screen font-nunito">
+              <Header user={user} />
+              <ChatPage />
+            </div>
+          }
+        />
+      </Routes>
     </Router>
   );
 }
