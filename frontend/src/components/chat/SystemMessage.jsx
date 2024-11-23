@@ -8,7 +8,10 @@ const SystemMessage = ({ content }) => {
         <span className="text-2xl ">🧙‍♂️</span>
       </div>
       {/* Burbuja del mensaje */}
-      <div className="bg-gradient-to-r from-[#9B00FC75] to-[#140E8675] text-white py-2 px-4 rounded-lg max-w-xs">
+      <div
+        className="bg-gradient-to-r from-[#9B00FC75] to-[#140E8675] text-white py-2 px-4 rounded-lg max-w-xs"
+        style={{ wordBreak: "break-word", whiteSpace: "pre-wrap" }}
+      >
         {content}
       </div>
     </div>

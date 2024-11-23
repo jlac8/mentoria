@@ -8,8 +8,8 @@ import LoadSpinner from "../ui/LoadSpinner";
 const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [selectedRole, setSelectedRole] = useState(null);
-  const [currentSection, setCurrentSection] = useState("AS_IS"); // AS_IS o TO_BE
-  const [showForm, setShowForm] = useState(true); // Controla si se muestra el formulario
+  const [currentSection, setCurrentSection] = useState("AS_IS");
+  const [showForm, setShowForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleUserChoice = (role) => {
@@ -20,19 +20,23 @@ const Chat = () => {
       {
         type: "system",
         content:
-          "¡Entendido! Para dar respuesta a las preguntas y poder guiarte, debes proporcionarme esta información.",
+          "¡Entendido! Para conjurar mis hechizos y poder guiarte, debes proporcionarme esta información.",
       },
     ]);
   };
 
   const handleFormSubmit = async (formData) => {
-    setShowForm(false); // Ocultar el formulario mientras se procesa
-    setIsLoading(true); // Mostrar el spinner de carga
+    setShowForm(false);
+    setIsLoading(true);
 
-    // Crear un mensaje para el usuario que incluye los datos llenados
-    const userMessage = `Formulario completado con los siguientes campos: ${JSON.stringify(
+    const userMessage = `Formulario completado con los siguientes campos:\n${Object.entries(
       formData
-    )}`;
+    )
+      .map(
+        ([field, value]) =>
+          `- ${field.replace(/([A-Z])/g, " $1")}: ${value || "Sin respuesta"}`
+      )
+      .join("\n")}`;
 
     // Generar el prompt para el modelo
     const prompt =
@@ -64,11 +68,7 @@ const Chat = () => {
 
     // Simular una llamada a la API para obtener el resultado del prompt
     try {
-      setMessages((prev) => [
-        ...prev,
-        { type: "user", content: userMessage }, // Mensaje del usuario con los campos llenados
-        { type: "system", content: "Procesando tu información..." },
-      ]);
+      setMessages((prev) => [...prev, { type: "user", content: userMessage }]);
 
       const response = await fetch("http://localhost:5000/api/tobe", {
         method: "POST",
@@ -84,7 +84,7 @@ const Chat = () => {
         ...prev,
         {
           type: "system",
-          content: `Resultado del análisis: ${result.message}`,
+          content: `${result.message}`,
         },
         {
           type: "system",
@@ -93,9 +93,8 @@ const Chat = () => {
         },
       ]);
 
-      // Cambiar a la siguiente sección
       setCurrentSection("TO_BE");
-      setShowForm(true); // Mostrar el formulario para la sección TO_BE
+      setShowForm(true);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
@@ -106,7 +105,7 @@ const Chat = () => {
         },
       ]);
     } finally {
-      setIsLoading(false); // Ocultar el spinner de carga
+      setIsLoading(false);
     }
   };
 

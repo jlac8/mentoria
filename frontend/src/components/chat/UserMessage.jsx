@@ -3,7 +3,7 @@ const UserMessage = ({ content }) => {
     <div className="flex justify-end mb-4">
       <div
         className="bg-white text-primary py-2 px-4 rounded-lg max-w-xs"
-        style={{ wordBreak: "break-word" }}
+        style={{ wordBreak: "break-word", whiteSpace: "pre-wrap" }}
       >
         {content}
       </div>
