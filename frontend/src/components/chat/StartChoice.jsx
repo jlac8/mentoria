@@ -1,31 +1,35 @@
-// src/components/Chat/StartChoice.jsx
+import SystemMessage from "./SystemMessage";
+
 const StartChoice = ({ onChoice }) => {
   const roles = [
     {
       role: "Escolar",
       description:
-        "Te ayudaré a organizar tus estudios y desarrollar hábitos efectivos.",
+        "Estudiantes de primaria y secundaria que desean descubrir sus interes y explorar posibles carreras a estudiar. Incluye orientación vocacional",
     },
     {
       role: "Universitario",
       description:
-        "Podemos planificar tu aprendizaje y prepararte para tus retos académicos.",
+        "Estudiantes de educación superior, que desean seleccionar y adquirir conocimientos especializados, y ganar experiencia práctica. Incluye revisión de CV",
     },
     {
       role: "Profesional",
       description:
-        "Te guiaré para adquirir nuevas habilidades y avanzar en tu carrera.",
+        "Personas insertadas en el mercado laboral que desean avanzar en su carrera y alcanzar sus metas profesionales. Incluye revisión de Linkedin.",
     },
     {
       role: "Emprendedor",
       description:
-        "Te apoyaré en estructurar tus ideas y desarrollar tu negocio.",
+        "Personas que desean iniciar o mejorar su propio negocio, obtener financiamiento y expandir su red de contactos. Incluye revisión de las rrss de tu emprendimiento.",
     },
   ];
 
   return (
-    <div className="flex flex-col items-center">
-      <p className="mb-4 text-xl">¿Cuál es tu perfil?</p>
+    <div className="flex flex-col items-center mt-4">
+      {/* Mensaje del Sistema */}
+      <SystemMessage content="¡Excelente! Para asistirte en tu travesía, necesito saber en qué etapa de tu vida te encuentras." />
+
+      {/* Botones para Seleccionar el Rol */}
       {roles.map(({ role, description }) => (
         <button
           key={role}

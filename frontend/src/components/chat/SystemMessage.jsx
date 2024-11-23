@@ -3,7 +3,7 @@ const SystemMessage = ({ content }) => {
     <div className="flex items-start mb-4">
       {/* Icono del mago */}
       <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-4">
-        <span className="text-2xl">🧙‍♂️</span>
+        <span className="text-2xl ">🧙‍♂️</span>
       </div>
       {/* Burbuja del mensaje */}
       <div
