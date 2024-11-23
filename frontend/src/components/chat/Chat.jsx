@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SystemMessage from "./SystemMessage";
-import UserMessage from "./UserMessage";
 import StartChoice from "./StartChoice";
+import UserMessage from "./UserMessage";
 import FormUser from "./FormUser";
 import LoadSpinner from "../ui/LoadSpinner";
 
@@ -19,7 +19,8 @@ const Chat = () => {
       { type: "user", content: `Soy ${role}.` },
       {
         type: "system",
-        content: `¡Entendido! Vamos a trabajar en tu estado actual (${role}). Completa el formulario a continuación.`,
+        content:
+          "¡Entendido! Para dar respuesta a las preguntas y poder guiarte, debes proporcionarme esta información.",
       },
     ]);
   };
@@ -76,6 +77,8 @@ const Chat = () => {
       });
 
       const result = await response.json();
+
+      console.log(result.message);
 
       setMessages((prev) => [
         ...prev,

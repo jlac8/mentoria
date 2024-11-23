@@ -1,9 +1,6 @@
-import { useNavigate } from "react-router-dom";
-import Button from "../ui/Button";
+import { Link } from "react-router-dom";
 
 const Onboarding = () => {
-  const navigate = useNavigate();
-
   return (
     <div className="text-center text-white px-4 font-nunito max-w-md mx-auto">
       <div className="text-6xl font-sans mb-4">🧙‍♂️</div>
@@ -15,12 +12,12 @@ const Onboarding = () => {
         profundos deseos y el máximo esplendor de tu potencial. ¿Estás listo
         para adentrarte en este sendero mágico?
       </p>
-      <Button
-        text="¡Sí, estoy listo!"
-        onClick={() => {
-          navigate("/chat");
-        }}
-      />
+      <Link
+        to="/chat"
+        className="btn-primary bg-white text-primary font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+      >
+        ¡Sí, estoy listo!
+      </Link>
     </div>
   );
 };

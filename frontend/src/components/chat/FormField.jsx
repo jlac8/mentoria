@@ -41,6 +41,7 @@ const FormField = ({ label, type, value, onChange, placeholder, info }) => {
           </p>
           <input
             type="file"
+            required
             accept=".pdf"
             onChange={(e) => handleFileChange(e.target.files[0])}
             className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-gray-800"
@@ -49,6 +50,7 @@ const FormField = ({ label, type, value, onChange, placeholder, info }) => {
       ) : (
         <input
           type={type}
+          required
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={placeholder}

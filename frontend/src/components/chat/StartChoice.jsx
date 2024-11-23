@@ -5,31 +5,29 @@ const StartChoice = ({ onChoice }) => {
     {
       role: "Escolar",
       description:
-        "Estudiantes de primaria y secundaria que desean descubrir sus interes y explorar posibles carreras a estudiar. Incluye orientación vocacional",
+        "¿Qué carrera debería estudiar? ¿Cómo se logra el éxito estudiando esa carrera? ",
     },
     {
       role: "Universitario",
       description:
-        "Estudiantes de educación superior, que desean seleccionar y adquirir conocimientos especializados, y ganar experiencia práctica. Incluye revisión de CV",
+        "¿Qué especialización se ajusta más a mi perfil? ¿Cómo lograrla efectivamente?",
     },
     {
       role: "Profesional",
       description:
-        "Personas insertadas en el mercado laboral que desean avanzar en su carrera y alcanzar sus metas profesionales. Incluye revisión de Linkedin.",
+        "¿Qué puesto se adapta mejor a mi perfil? ¿Cómo mejorar mi perfil para alcanzarlo? ",
     },
     {
       role: "Emprendedor",
       description:
-        "Personas que desean iniciar o mejorar su propio negocio, obtener financiamiento y expandir su red de contactos. Incluye revisión de las rrss de tu emprendimiento.",
+        "¿Qué negocio debería iniciar y qué pasos seguir? ¿Cómo llevarlo al siguiente nivel?",
     },
   ];
 
   return (
     <div className="flex flex-col items-center mt-4">
-      {/* Mensaje del Sistema */}
       <SystemMessage content="¡Excelente! Para asistirte en tu travesía, necesito saber en qué etapa de tu vida te encuentras." />
 
-      {/* Botones para Seleccionar el Rol */}
       {roles.map(({ role, description }) => (
         <button
           key={role}
@@ -37,8 +35,8 @@ const StartChoice = ({ onChoice }) => {
           onClick={() => onChoice(role)}
         >
           <div>
-            <p className="text-lg font-bold">{`Soy ${role}`}</p>
-            <p className="text-sm text-gray-600">{description}</p>
+            <p className="text-sm text-gray-600">{`Soy ${role}`}</p>
+            <p className="text-lg font-bold">{description}</p>
           </div>
         </button>
       ))}

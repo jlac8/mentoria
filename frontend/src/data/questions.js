@@ -2,82 +2,168 @@ export const questionsByRole = {
   Escolar: {
     AS_IS: [
       {
-        field: "name",
-        label: "Nombre",
-        type: "text",
-        placeholder: "Ejemplo: Juan Pérez",
+        field: "age",
+        label: "¿Qué edad tienes?",
+        type: "number",
+        placeholder: "15",
       },
       {
-        field: "currentHabits",
-        label: "Hábitos Actuales",
+        field: "interests",
+        label: "¿Cuáles son tus intereses y pasatiempos?",
+        type: "textarea",
+        placeholder: "Me gusta pintar, jugar fútbol, leer sobre ciencia",
+      },
+      {
+        field: "favoriteSubjects",
+        label: "¿Qué materias te gustan más?",
         type: "text",
-        placeholder: "Ejemplo: Estudio 2 horas al día",
+        placeholder: "Matemáticas, Historia",
+      },
+      {
+        field: "leastFavoriteSubjects",
+        label: "¿Qué materias te gustan menos o encuentras más difíciles?",
+        type: "text",
+        placeholder: "Física, Inglés",
+      },
+      {
+        field: "skillsAndTalents",
+        label: "¿En qué cosas consideras que eres bueno?",
+        type: "textarea",
+        placeholder: "Dibujo, programación, hablar en público",
       },
     ],
     TO_BE: [
       {
-        field: "desiredHabits",
-        label: "Hábitos Deseados",
-        type: "text",
-        placeholder: "Ejemplo: Estudiar 4 horas al día",
+        field: "goalsAndDreams",
+        label: "¿Cuáles son tus metas y sueños para el futuro?",
+        type: "textarea",
+        placeholder:
+          "Quiero ser médico y ayudar a personas en comunidades remotas",
       },
       {
-        field: "futureGoals",
-        label: "Metas Futuras",
-        type: "text",
-        placeholder: "Ejemplo: Ser ingeniero",
+        field: "idealLifestyle",
+        label: "¿Cómo te imaginas tu estilo de vida ideal?",
+        type: "textarea",
+        placeholder: "Quiero trabajar desde casa y tener tiempo para viajar",
+      },
+      {
+        field: "roleModel",
+        label: "¿Quién es una persona que admiras y por qué?",
+        type: "textarea",
+        placeholder: "Admiro a mi profesora porque es muy paciente y creativa",
+      },
+      {
+        field: "opportunities",
+        label:
+          "¿Qué oportunidades o recursos crees que tienes para lograr tus metas?",
+        type: "textarea",
+        placeholder: "Mi familia me apoya y tengo acceso a una buena escuela",
+      },
+      {
+        field: "priorities",
+        label: "¿Qué es lo más importante para ti en la vida?",
+        type: "textarea",
+        placeholder: "Ayudar a los demás y ser feliz con lo que hago",
       },
     ],
   },
   Universitario: {
     AS_IS: [
       {
-        field: "name",
-        label: "Nombre",
+        field: "currentCareer",
+        label: "¿Qué carrera estás estudiando?",
         type: "text",
-        placeholder: "Ejemplo: María López",
+        placeholder: "Ingeniería de Sistemas, Psicología, Medicina",
       },
       {
-        field: "currentCourses",
-        label: "Cursos Actuales",
+        field: "university",
+        label: "¿En qué universidad estudias?",
         type: "text",
-        placeholder: "Ejemplo: Algoritmos y Estructuras de Datos",
+        placeholder: "Universidad Nacional Autónoma de México",
+      },
+      {
+        field: "yearsLeft",
+        label: "¿Cuánto tiempo te falta para terminar tu carrera?",
+        type: "text",
+        placeholder: "4 semestres, 3 años",
+      },
+      {
+        field: "favoriteSubject",
+        label: "¿Cuáles son tus materias favoritas?",
+        type: "text",
+        placeholder: "Programación avanzada, Psicología clínica",
+      },
+      {
+        field: "englishLevel",
+        label: "¿Cuál es tu nivel de inglés?",
+        type: "text",
+        placeholder:
+          "A1 (básico), A2, B1, B2 (intermedio avanzado), C1, C2 (proficiente)",
       },
     ],
     TO_BE: [
       {
-        field: "desiredSkills",
-        label: "Habilidades Deseadas",
+        field: "interests",
+        label: "¿Cuáles son tus intereses dentro o fuera de tu carrera?",
         type: "text",
-        placeholder: "Ejemplo: Dominar inteligencia artificial",
+        placeholder:
+          "Desarrollo de videojuegos, análisis de datos, diseño gráfico, fotografía",
+      },
+      {
+        field: "skillsToImprove",
+        label: "¿Qué habilidades te gustaría perfeccionar?",
+        type: "text",
+        placeholder:
+          "Liderazgo, hablar en público, programación en Python, gestión de proyectos",
       },
       {
         field: "careerGoals",
-        label: "Metas de Carrera",
+        label: "¿Cuáles son tus objetivos profesionales?",
         type: "text",
-        placeholder: "Ejemplo: Trabajar en Google",
+        placeholder:
+          "Trabajar en una empresa tecnológica, ser emprendedor, realizar investigaciones científicas",
+      },
+      {
+        field: "workStyle",
+        label: "¿Qué tipo de ambiente laboral prefieres?",
+        type: "text",
+        placeholder: "Trabajo en equipo, remoto, flexible, en oficina",
+      },
+      {
+        field: "extracurricularActivities",
+        label:
+          "¿Qué actividades extracurriculares te gustaría seguir haciendo o comenzar?",
+        type: "text",
+        placeholder:
+          "Participar en hackathones, practicar deportes, voluntariado",
       },
     ],
   },
   Profesional: {
     AS_IS: [
       {
+        field: "enjoyWork",
+        label: "¿Qué es lo que más disfrutas de tu trabajo actual?",
+        type: "text",
+        placeholder: "Resolver problemas complejos, colaborar con mi equipo.",
+      },
+      {
         field: "residence",
         label: "Lugar de residencia",
         type: "text",
-        placeholder: "Lima",
+        placeholder: "Lima, Madrid, Bogotá.",
       },
       {
-        field: "currentObstacles",
-        label: "Obstáculos actuales y retos",
+        field: "dislikeWork",
+        label: "¿Qué es lo que menos disfrutas de tu trabajo actual?",
         type: "text",
-        placeholder: "Falta de habilidades técnicas avanzadas",
+        placeholder: "Reuniones largas, falta de retos técnicos.",
       },
       {
-        field: "personalInterests",
-        label: "Intereses personales y pasiones",
+        field: "hobbies",
+        label: "¿Cuáles son tus pasatiempos?",
         type: "text",
-        placeholder: "Fotografía, senderismo",
+        placeholder: "Leer, hacer ejercicio, tocar la guitarra.",
       },
       {
         field: "linkedin",
@@ -88,16 +174,36 @@ export const questionsByRole = {
     ],
     TO_BE: [
       {
-        field: "desiredPosition",
-        label: "Puesto Deseado",
+        field: "skillsToImprove",
+        label: "¿Qué habilidades te gustaría perfeccionar?",
         type: "text",
-        placeholder: "Ejemplo: Líder técnico",
+        placeholder: "Liderazgo, negociación, programación avanzada en Python.",
       },
       {
-        field: "professionalGoals",
-        label: "Metas Profesionales",
+        field: "workEnvironment",
+        label: "¿Cuál sería tu entorno laboral ideal?",
         type: "text",
-        placeholder: "Ejemplo: Lanzar un producto exitoso",
+        placeholder: "Trabajo remoto, híbrido, en una empresa nearshore.",
+      },
+      {
+        field: "learningResources",
+        label: "¿Con qué recursos de aprendizaje cuentas actualmente?",
+        type: "text",
+        placeholder: "Cursos en línea, bibliografía técnica, mentorías.",
+      },
+      {
+        field: "certificationsOrMasters",
+        label: "¿Qué certificados o maestrías estás considerando tomar?",
+        type: "text",
+        placeholder:
+          "MBA, certificación en gestión de proyectos (PMP), curso de análisis de datos.",
+      },
+      {
+        field: "desiredRole",
+        label: "¿Qué puesto o rol profesional has pensado en alcanzar?",
+        type: "text",
+        placeholder:
+          "Gerente de proyectos, Científico de datos, Director de marketing.",
       },
     ],
   },
@@ -110,24 +216,68 @@ export const questionsByRole = {
         placeholder: "Ejemplo: Sofía García",
       },
       {
-        field: "currentBusiness",
-        label: "Negocio Actual",
-        type: "text",
-        placeholder: "Ejemplo: EcoSostenible",
+        field: "workExperience",
+        label: "Experiencia laboral o empresarial previa",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Trabajo en ventas, administración de empresas familiares.",
+      },
+      {
+        field: "personalInterests",
+        label: "Intereses y pasiones personales",
+        type: "textarea",
+        placeholder: "Ejemplo: Tecnología, moda sostenible, cocina gourmet.",
+      },
+      {
+        field: "availableResources",
+        label: "Recursos disponibles para emprender",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Ahorros personales, tiempo parcial, red de contactos.",
+      },
+      {
+        field: "currentChallenges",
+        label: "Obstáculos o retos actuales",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Falta de capital inicial, desconocimiento del mercado.",
       },
     ],
     TO_BE: [
       {
-        field: "businessVision",
-        label: "Visión de Negocio",
-        type: "text",
-        placeholder: "Ejemplo: Expandir a nivel internacional",
+        field: "businessType",
+        label: "Tipo de negocio que deseas iniciar",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Tienda en línea de productos orgánicos, restaurante temático.",
       },
       {
-        field: "desiredImpact",
-        label: "Impacto Deseado",
-        type: "text",
-        placeholder: "Ejemplo: Reducir la huella de carbono",
+        field: "targetAudience",
+        label: "Público objetivo de tu negocio",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Jóvenes interesados en moda sostenible, empresas pequeñas.",
+      },
+      {
+        field: "skillsToDevelop",
+        label: "Habilidades que necesitas desarrollar",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Marketing digital, negociación, contabilidad básica.",
+      },
+      {
+        field: "scalingStrategies",
+        label: "Estrategias para escalar tu negocio",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Abrir nuevas sucursales, internacionalizar la marca.",
+      },
+      {
+        field: "businessPurpose",
+        label: "Misión o propósito de tu negocio",
+        type: "textarea",
+        placeholder:
+          "Ejemplo: Reducir la huella de carbono, apoyar comunidades vulnerables.",
       },
     ],
   },

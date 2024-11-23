@@ -15,13 +15,21 @@ const generateTobe = async (req, res) => {
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-4", // Cambia al modelo que prefieras
-      messages: [{ role: "user", content: prompt }],
-      temperature: 0.7,
+      messages: [
+        {
+          role: "system",
+          content:
+            "Eres un asistente vocacional que va a orientar a la persona de acuerdo a sus necesidades. Responde de manera motivacional, concisa, anima a la persona. Responde también con emojis",
+        },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0.4,
     });
 
     const message =
       response.choices[0]?.message?.content ||
       "No se pudo generar una respuesta.";
+    console.log(message);
 
     res.status(200).json({ success: true, message });
   } catch (error) {
