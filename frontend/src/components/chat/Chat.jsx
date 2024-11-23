@@ -9,6 +9,7 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [selectedRole, setSelectedRole] = useState(null);
   const [currentSection, setCurrentSection] = useState("AS_IS"); // AS_IS o TO_BE
+  const [showForm, setShowForm] = useState(true); // Controla si se muestra el formulario
   const [isLoading, setIsLoading] = useState(false);
 
   const handleUserChoice = (role) => {
@@ -18,42 +19,56 @@ const Chat = () => {
       { type: "user", content: `Soy ${role}.` },
       {
         type: "system",
-        content: `¡Entendido! Vamos a trabajar en tu estado actual (${role}).`,
+        content: `¡Entendido! Vamos a trabajar en tu estado actual (${role}). Completa el formulario a continuación.`,
       },
     ]);
   };
 
   const handleFormSubmit = async (formData) => {
-    // Armar el prompt con los datos del formulario
-    const prompt = `
-      Estoy ayudando a un profesional que tiene el siguiente perfil:
-      - Lugar de residencia: ${formData.residence}.
-      - Obstáculos actuales: ${formData.currentObstacles}.
-      - Intereses personales: ${formData.personalInterests}.
-      - Perfil de LinkedIn: ${
-        formData.linkedin instanceof File
-          ? formData.linkedin.name
-          : "No proporcionado"
-      }.
+    setShowForm(false); // Ocultar el formulario mientras se procesa
+    setIsLoading(true); // Mostrar el spinner de carga
 
-      Sugiere un TO BE (metas futuras) que este profesional debería plantearse para su carrera.
-      Además, busca ejemplos de profesionales similares que hayan logrado un gran éxito y explica cómo lo hicieron.
-    `;
+    // Crear un mensaje para el usuario que incluye los datos llenados
+    const userMessage = `Formulario completado con los siguientes campos: ${JSON.stringify(
+      formData
+    )}`;
 
-    setMessages((prev) => [
-      ...prev,
-      {
-        type: "user",
-        content: `Formulario completado: ${JSON.stringify(formData)}`,
-      },
-      {
-        type: "system",
-        content: "Procesando tu información...",
-      },
-    ]);
+    // Generar el prompt para el modelo
+    const prompt =
+      currentSection === "AS_IS"
+        ? `
+        Estoy ayudando a un profesional que tiene el siguiente perfil:
+        - Lugar de residencia: ${formData.residence}.
+        - Obstáculos actuales: ${formData.currentObstacles}.
+        - Intereses personales: ${formData.personalInterests}.
+        - Perfil de LinkedIn: ${
+          formData.linkedin instanceof File
+            ? formData.linkedin.name
+            : formData.linkedin
+            ? "Texto extraído del PDF"
+            : "No proporcionado"
+        }.
 
+        Sugiere un TO BE (metas futuras) que este profesional debería plantearse para su carrera.
+        Además, busca ejemplos de profesionales similares que hayan logrado un gran éxito y explica cómo lo hicieron.
+      `
+        : `
+        Con base en el perfil inicial, el profesional busca alcanzar los siguientes objetivos:
+        - Metas futuras: ${formData.futureGoals}.
+        - Recursos disponibles: ${formData.resources}.
+        - Limitaciones actuales: ${formData.currentLimitations}.
+
+        Sugiere pasos concretos para lograr estos objetivos, considerando ejemplos exitosos y estrategias relevantes.
+      `;
+
+    // Simular una llamada a la API para obtener el resultado del prompt
     try {
-      // Simular una llamada a la API o conectarla directamente
+      setMessages((prev) => [
+        ...prev,
+        { type: "user", content: userMessage }, // Mensaje del usuario con los campos llenados
+        { type: "system", content: "Procesando tu información..." },
+      ]);
+
       const response = await fetch("http://localhost:5000/api/tobe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -62,24 +77,22 @@ const Chat = () => {
 
       const result = await response.json();
 
-      if (result.success) {
-        setMessages((prev) => [
-          ...prev,
-          {
-            type: "system",
-            content: result.message,
-          },
-        ]);
-      } else {
-        setMessages((prev) => [
-          ...prev,
-          {
-            type: "system",
-            content:
-              "Ocurrió un error al generar tu respuesta. Intenta de nuevo.",
-          },
-        ]);
-      }
+      setMessages((prev) => [
+        ...prev,
+        {
+          type: "system",
+          content: `Resultado del análisis: ${result.message}`,
+        },
+        {
+          type: "system",
+          content:
+            "¡Gracias por completar esta sección! Ahora dime, ¿cuál es la situación deseada? Completa el siguiente formulario para definir tus metas futuras (TO_BE).",
+        },
+      ]);
+
+      // Cambiar a la siguiente sección
+      setCurrentSection("TO_BE");
+      setShowForm(true); // Mostrar el formulario para la sección TO_BE
     } catch (error) {
       setMessages((prev) => [
         ...prev,
@@ -89,6 +102,8 @@ const Chat = () => {
             "Hubo un problema al procesar tu información. Revisa tu conexión o inténtalo más tarde.",
         },
       ]);
+    } finally {
+      setIsLoading(false); // Ocultar el spinner de carga
     }
   };
 
@@ -103,11 +118,13 @@ const Chat = () => {
           )
         )}
         {!selectedRole && <StartChoice onChoice={handleUserChoice} />}
-        {selectedRole && (
+        {selectedRole && showForm && (
           <FormUser
             role={selectedRole}
             section={currentSection}
-            onSubmit={handleFormSubmit}
+            onSubmit={(formData) => {
+              handleFormSubmit(formData);
+            }}
           />
         )}
         {isLoading && <LoadSpinner />}

@@ -7,7 +7,7 @@ const FormUser = ({ onSubmit, role, section }) => {
 
   const [formData, setFormData] = useState(
     questions.reduce((acc, question) => {
-      acc[question.field] = question.type === "file" ? null : ""; // Inicializar con null para archivos
+      acc[question.field] = question.type === "file" ? "" : ""; // Inicializar con cadena vacía
       return acc;
     }, {})
   );

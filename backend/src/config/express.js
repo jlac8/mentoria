@@ -7,6 +7,7 @@ const configureExpress = () => {
   // Middleware global
   app.use(cors()); // Habilitar CORS
   app.use(express.json()); // Parsear JSON en las solicitudes
+  app.use(express.urlencoded({ extended: true }));
 
   return app;
 };
