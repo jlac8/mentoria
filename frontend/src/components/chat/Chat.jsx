@@ -1,4 +1,6 @@
+// Chat.js
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Importar useNavigate
 import SystemMessage from "./SystemMessage";
 import StartChoice from "./StartChoice";
 import UserMessage from "./UserMessage";
@@ -6,11 +8,13 @@ import FormUser from "./FormUser";
 import LoadSpinner from "../ui/LoadSpinner";
 
 const Chat = () => {
+  const navigate = useNavigate(); // Inicializar useNavigate
   const [messages, setMessages] = useState([]);
   const [selectedRole, setSelectedRole] = useState(null);
   const [currentSection, setCurrentSection] = useState("AS_IS");
   const [showForm, setShowForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [showRedirectButton, setShowRedirectButton] = useState(false); // Nuevo estado
 
   const handleUserChoice = (role) => {
     setSelectedRole(role);
@@ -51,6 +55,10 @@ const Chat = () => {
         }),
       });
 
+      if (!response.ok) {
+        throw new Error("Error en la respuesta del servidor");
+      }
+
       const result = await response.json();
 
       setMessages((prev) => [
@@ -66,9 +74,15 @@ const Chat = () => {
         },
       ]);
 
-      setCurrentSection("TO_BE");
-      setShowForm(true);
+      if (currentSection === "AS_IS") {
+        setCurrentSection("TO_BE");
+        setShowForm(true);
+      } else if (currentSection === "TO_BE") {
+        // Después de enviar el segundo formulario, mostrar el botón de redirección
+        setShowRedirectButton(true);
+      }
     } catch (error) {
+      console.error("Error al enviar el formulario:", error);
       setMessages((prev) => [
         ...prev,
         {
@@ -101,6 +115,16 @@ const Chat = () => {
               handleFormSubmit(formData);
             }}
           />
+        )}
+        {showRedirectButton && (
+          <div className="mt-4">
+            <button
+              onClick={() => navigate("/profile")}
+              className="btn-primary bg-white text-primary font-semibold py-2 px-6 rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+            >
+              Descubre tu camino para alcanzar el éxito
+            </button>
+          </div>
         )}
         {isLoading && <LoadSpinner />}
       </div>

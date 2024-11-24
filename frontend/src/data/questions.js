@@ -142,31 +142,31 @@ export const questionsByRole = {
   Profesional: {
     AS_IS: [
       {
-        field: "enjoyWork",
-        label: "¿Qué es lo que más disfrutas de tu trabajo actual?",
-        type: "text",
-        placeholder: "Resolver problemas complejos, colaborar con mi equipo.",
-      },
-      {
-        field: "residence",
+        field: "Residencia",
         label: "Lugar de residencia",
         type: "text",
         placeholder: "Lima, Madrid, Bogotá.",
       },
       {
-        field: "dislikeWork",
-        label: "¿Qué es lo que menos disfrutas de tu trabajo actual?",
+        field: "DisfrutaDelTrabajo",
+        label: "¿Qué es lo que más disfrutas de tu trabajo?",
+        type: "text",
+        placeholder: "Resolver problemas complejos, colaborar con mi equipo.",
+      },
+      {
+        field: "NoDisfrutaDelTrabajo",
+        label: "¿Qué es lo que menos disfrutas de tu trabajo?",
         type: "text",
         placeholder: "Reuniones largas, falta de retos técnicos.",
       },
       {
-        field: "hobbies",
+        field: "Hobbies",
         label: "¿Cuáles son tus pasatiempos?",
         type: "text",
         placeholder: "Leer, hacer ejercicio, tocar la guitarra.",
       },
       {
-        field: "linkedin",
+        field: "Linkedin",
         label: "Perfil de LinkedIn",
         type: "file",
         info: "Descarga tu perfil de LinkedIn como PDF. Ve a tu perfil, haz clic en 'Recursos' y selecciona 'Guardar como PDF'.",
@@ -174,36 +174,34 @@ export const questionsByRole = {
     ],
     TO_BE: [
       {
-        field: "skillsToImprove",
+        field: "HabilidadesQueMejorar",
         label: "¿Qué habilidades te gustaría perfeccionar?",
         type: "text",
-        placeholder: "Liderazgo, negociación, programación avanzada en Python.",
+        placeholder: "Liderazgo, programación en Python.",
       },
       {
-        field: "workEnvironment",
+        field: "EntornoLaboral",
         label: "¿Cuál sería tu entorno laboral ideal?",
         type: "text",
-        placeholder: "Trabajo remoto, híbrido, en una empresa nearshore.",
+        placeholder: "Trabajo remoto, o en una empresa nearshore.",
       },
       {
-        field: "learningResources",
+        field: "RecursosDeAprendizaje",
         label: "¿Con qué recursos de aprendizaje cuentas actualmente?",
         type: "text",
-        placeholder: "Cursos en línea, bibliografía técnica, mentorías.",
+        placeholder: "Grabaciones de la universidad, Platzi.",
       },
       {
-        field: "certificationsOrMasters",
+        field: "CertificacionesMaestriasDeseadas",
         label: "¿Qué certificados o maestrías estás considerando tomar?",
         type: "text",
-        placeholder:
-          "MBA, certificación en gestión de proyectos (PMP), curso de análisis de datos.",
+        placeholder: "PMP, Azure Fundamentals, MBA.",
       },
       {
-        field: "desiredRole",
+        field: "RolDeseado",
         label: "¿Qué puesto o rol profesional has pensado en alcanzar?",
         type: "text",
-        placeholder:
-          "Gerente de proyectos, Científico de datos, Director de marketing.",
+        placeholder: "Gerente de proyectos, Científico de datos.",
       },
     ],
   },

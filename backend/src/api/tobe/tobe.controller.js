@@ -7,7 +7,7 @@ const openai = require("../../config/openai");
  */
 const generateSystemMessage = (role, section) => {
   const commonMessage = `
-    Eres un mago que ayuda a su aprendiz de forma precisa y motivadora. Usa emojis propios de un mago, pero mantén profesionalismo en el contenido.
+    Actúa como un mago y mentor que ayuda a su aprendiz de forma precisa y concisa. Usa emojis propios de un mago, se motivador, pero mantén profesionalismo en el contenido. No saludes ni te despidas, pues están conversando.
   `;
 
   const specificMessages = {
@@ -29,10 +29,10 @@ const generateSystemMessage = (role, section) => {
     },
     Profesional: {
       AS_IS: `
-        Tu tarea es analizar el perfil actual de un profesional. Identifica sus fortalezas y áreas de mejora, y proporciónale motivación para alcanzar su máximo potencial.
+        Explica qué puesto que pague más que el actual le recomiendas en base a su perfil. Estos puestos deben ser específicos y deseados por el aprendiz.
       `,
       TO_BE: `
-        Tu tarea es ayudar a un profesional a alcanzar sus objetivos futuros. Usa su perfil inicial como referencia para proponer pasos concretos y metas alcanzables.
+        Menciona cómo debe mejorar su perfil para alcanzar el puesto que mejor se adapta a lo que quiere. Indicale las opciones más efectivas. Debe incluir a qué comunidad debe unirse, el nombre de algún proyecto que debe hacer y qué cursos permitirían que haga ese proyecto.
       `,
     },
     Emprendedor: {
@@ -60,7 +60,7 @@ const generateSystemMessage = (role, section) => {
 const generateUserPrompt = (data, section) => {
   if (section === "AS_IS") {
     return `
-      Perfil inicial del usuario:
+      Perfil del usuario:
       ${Object.entries(data)
         .map(
           ([key, value]) =>
@@ -72,16 +72,6 @@ const generateUserPrompt = (data, section) => {
     `;
   } else if (section === "TO_BE") {
     return `
-      Perfil inicial del usuario:
-      ${Object.entries(data.previousProfile || {})
-        .map(
-          ([key, value]) =>
-            `- ${key.replace(/([A-Z])/g, " $1")}: ${
-              value || "No proporcionado"
-            }`
-        )
-        .join("\n")}
-
       Resultado del AS_IS:
       ${data.previousResult || "No proporcionado"}
 
