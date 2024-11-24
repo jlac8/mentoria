@@ -20,7 +20,7 @@ const Chat = () => {
       {
         type: "system",
         content:
-          "¡Entendido! Para conjurar mis hechizos y poder guiarte, debes proporcionarme esta información.",
+          "¡Entendido! Para conjurar mis hechizos y poder guiarte, debes proporcionarme esta información:",
       },
     ]);
   };
@@ -38,47 +38,20 @@ const Chat = () => {
       )
       .join("\n")}`;
 
-    // Generar el prompt para el modelo
-    const prompt =
-      currentSection === "AS_IS"
-        ? `
-        Estoy ayudando a un profesional que tiene el siguiente perfil:
-        - Lugar de residencia: ${formData.residence}.
-        - Obstáculos actuales: ${formData.currentObstacles}.
-        - Intereses personales: ${formData.personalInterests}.
-        - Perfil de LinkedIn: ${
-          formData.linkedin instanceof File
-            ? formData.linkedin.name
-            : formData.linkedin
-            ? "Texto extraído del PDF"
-            : "No proporcionado"
-        }.
-
-        Sugiere un TO BE (metas futuras) que este profesional debería plantearse para su carrera.
-        Además, busca ejemplos de profesionales similares que hayan logrado un gran éxito y explica cómo lo hicieron.
-      `
-        : `
-        Con base en el perfil inicial, el profesional busca alcanzar los siguientes objetivos:
-        - Metas futuras: ${formData.futureGoals}.
-        - Recursos disponibles: ${formData.resources}.
-        - Limitaciones actuales: ${formData.currentLimitations}.
-
-        Sugiere pasos concretos para lograr estos objetivos, considerando ejemplos exitosos y estrategias relevantes.
-      `;
-
-    // Simular una llamada a la API para obtener el resultado del prompt
     try {
       setMessages((prev) => [...prev, { type: "user", content: userMessage }]);
 
       const response = await fetch("http://localhost:5000/api/tobe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt }),
+        body: JSON.stringify({
+          role: selectedRole, // Rol seleccionado (e.g., "profesional")
+          section: currentSection, // Sección actual (e.g., "AS_IS" o "TO_BE")
+          data: formData, // Datos del formulario
+        }),
       });
 
       const result = await response.json();
-
-      console.log(result.message);
 
       setMessages((prev) => [
         ...prev,
@@ -89,7 +62,7 @@ const Chat = () => {
         {
           type: "system",
           content:
-            "¡Gracias por completar esta sección! Ahora dime, ¿cuál es la situación deseada? Completa el siguiente formulario para definir tus metas futuras (TO_BE).",
+            "¡Gracias por completar esta sección! Ahora dime, ¿cuál es la situación deseada? Completa el siguiente formulario para definir tus metas futuras",
         },
       ]);
 
